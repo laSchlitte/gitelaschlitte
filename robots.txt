@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gitelaschlitte.pages.dev/sitemap.xml

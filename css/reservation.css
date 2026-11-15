@@ -1,0 +1,22 @@
+/* Page Réservation */
+
+.choix { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.choix .panel { display: flex; flex-direction: column; gap: 0.75rem; }
+.choix .panel i.grand { font-size: 2.4rem; line-height: 1; }
+.choix .btn { margin-top: auto; align-self: flex-start; }
+.choix ul { list-style: disc; padding-left: 1.2rem; font-size: 0.98rem; }
+.choix li + li { margin-top: 0.25rem; }
+
+.widget {
+    margin-top: 1rem;
+    border: 3px solid #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #fff;
+    height: 300px;
+}
+.widget iframe { width: 100%; height: 900px; border: 0; }
+@media (min-width: 750px) { .widget iframe { height: 780px; } }
+.widget-secours { text-align: center; margin-top: 1rem; }
+.widget-secours a { font-weight: 700; }
+.choix .panel img.grand { width: 2.4rem; height: 2.4rem; object-fit: contain; }

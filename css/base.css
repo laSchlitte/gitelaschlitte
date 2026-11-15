@@ -1,0 +1,340 @@
+/* =========================================================
+   Gîte la Schlitte — styles communs à toutes les pages
+   Palette d'origine conservée : vert clair / vert sapin / brun bois
+   ========================================================= */
+
+:root {
+    --vert-clair: #7cc87c;
+    --vert: #326a57;
+    --vert-fonce: #244d3f;
+    --bois: #4b4521;
+    --blanc: #ffffff;
+
+    --header-h: 64px;
+    --rayon: 18px;
+    --ombre: 0 6px 14px rgba(0, 0, 0, 0.25);
+    --max: 1100px;
+
+    /* Polices système : aucun chargement externe, rendu chaleureux */
+    --font-titre: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --font-texte: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ---------- Reset léger ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    background-color: var(--vert-clair);
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-texte);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--bois);
+    background-color: var(--vert-clair);
+}
+
+main { flex: 1; padding-top: var(--header-h); }
+
+img, iframe { display: block; max-width: 100%; }
+ul { list-style: none; }
+a { color: inherit; }
+
+h1, h2, h3 {
+    font-family: var(--font-titre);
+    line-height: 1.2;
+    color: var(--bois);
+}
+h1 { font-size: clamp(2rem, 6vw, 3.2rem); text-align: center; }
+h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); }
+h3 { font-size: 1.3rem; }
+p + p { margin-top: 0.9rem; }
+
+/* ---------- Mise en page ---------- */
+.container { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
+.section { padding-block: clamp(1.75rem, 5vw, 3.5rem); }
+.section--serre { padding-block: 0 clamp(1.75rem, 5vw, 3.5rem); }
+.centre { text-align: center; }
+.titre-page { padding-block: clamp(2rem, 6vw, 3.5rem) 0.5rem; }
+.sous-titre-page {
+    text-align: center;
+    max-width: 60ch;
+    margin: 0.75rem auto 0;
+    font-size: 1.1rem;
+}
+
+.titre-section { text-align: center; margin-bottom: 1.5rem; }
+.titre-section::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    margin: 0.6rem auto 0;
+    border-radius: 2px;
+    background: var(--bois);
+}
+
+/* ---------- Accessibilité ---------- */
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    z-index: 300;
+    padding: 0.6rem 1rem;
+    background: #fff;
+    color: var(--bois);
+    font-weight: 700;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px var(--bois);
+}
+
+/* ---------- Repère « à compléter » (à retirer une fois rempli) ---------- */
+.a-completer {
+    background: #fff3a0;
+    color: #5a4a00;
+    outline: 2px dashed #c9a800;
+    padding: 0 0.35em;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+/* ---------- Header / navigation ---------- */
+.site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: var(--header-h);
+    background: var(--vert);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+.nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-titre);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+.nav__logo img { width: 40px; height: 40px; border-radius: 50%; }
+
+.nav__menu { display: flex; align-items: center; gap: 1.75rem; }
+.nav__list { display: flex; gap: 1.5rem; }
+.nav__link {
+    display: inline-block;
+    padding: 0.4rem 0;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+.nav__link:hover,
+.nav__link[aria-current="page"] {
+    color: var(--vert-clair);
+    border-color: var(--vert-clair);
+}
+.nav__cta {
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    background: var(--vert-clair);
+    color: #12301f;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+.nav__cta:hover { background: #fff; }
+
+.nav__toggle {
+    display: none;
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 1.9rem;
+    line-height: 1;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+.nav__toggle .ico-fermer { display: none; }
+.menu-ouvert .nav__toggle .ico-ouvrir { display: none; }
+.menu-ouvert .nav__toggle .ico-fermer { display: inline; }
+
+/* Menu mobile (tablette et téléphone) */
+@media (max-width: 960px) {
+    .nav__toggle { display: block; }
+    .nav__menu {
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        max-height: calc(100vh - var(--header-h));
+        overflow-y: auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+        padding: 1.25rem 1.5rem 2rem;
+        background: var(--vert-fonce);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+    }
+    .nav__menu.is-open { opacity: 1; visibility: visible; transform: none; }
+    .nav__list { flex-direction: column; gap: 0.25rem; }
+    .nav__link { display: block; padding: 0.75rem 0; font-size: 1.15rem; }
+    .nav__cta { text-align: center; padding: 0.8rem 1rem; font-size: 1.1rem; }
+}
+
+/* ---------- Boutons ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.4rem;
+    font: inherit;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #fff;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+.btn:hover { background: #fff; color: var(--vert); }
+.btn:active { transform: translateY(1px); }
+.btn--plein { background: #fff; color: var(--vert); }
+.btn--plein:hover { background: var(--vert-clair); color: #12301f; }
+@media (hover: hover) { .btn:hover { transform: translateY(-2px); } }
+
+/* ---------- Panneaux et cartes ---------- */
+.panel {
+    background: var(--vert);
+    color: #fff;
+    border-radius: var(--rayon);
+    padding: clamp(1.25rem, 4vw, 2.25rem);
+    box-shadow: var(--ombre);
+}
+.panel h2, .panel h3 { color: #fff; }
+.panel--bois { background: var(--bois); }
+
+.cartes {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.carte-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+.carte-info i { font-size: 2.6rem; line-height: 1; }
+.carte-info p { font-size: 0.98rem; }
+
+/* Grille d'équipements (icônes noires d'origine passées en blanc) */
+.equipements {
+    display: grid;
+    gap: 1.5rem 1rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 700px) { .equipements { grid-template-columns: repeat(4, 1fr); } }
+.equip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.35;
+}
+.equip img { width: 3.4rem; height: 3.4rem; object-fit: contain; }
+.equip small { font-weight: 400; display: block; }
+
+/* ---------- Transition montagnes + footer ---------- */
+.montagnes {
+    height: clamp(140px, 28vw, 380px);
+    margin-top: 2rem;
+    background: url("../img/flat-mountains.svg") center bottom / 100% 190% no-repeat;
+}
+.site-footer {
+    background: var(--vert);
+    color: #fff;
+    padding-block: 2rem 1.25rem;
+    font-size: 0.97rem;
+}
+.footer__grille {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+.site-footer h2 { font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem; }
+.site-footer li { margin-bottom: 0.3rem; }
+.site-footer a { text-decoration: underline; text-underline-offset: 3px; }
+.site-footer a:hover { color: var(--vert-clair); }
+.footer__bas {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes decal-droite {
+    from { opacity: 0; transform: translateX(20%); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes decal-gauche {
+    from { opacity: 0; transform: translateX(-20%); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse {
+    from { transform: scale(1); }
+    to   { transform: scale(1.2); }
+}
+@keyframes flip {
+    from { transform: rotateY(0deg); }
+    to   { transform: rotateY(360deg); }
+}
+
+/* Les éléments .reveal ne sont masqués QUE si le JS est actif (classe .js) */
+.js .reveal { opacity: 0; }
+.js .reveal.is-visible { animation: fade-in 0.7s ease-out forwards; }
+.js .reveal.from-left.is-visible { animation-name: decal-gauche; animation-duration: 0.6s; }
+.js .reveal.from-right.is-visible { animation-name: decal-droite; animation-duration: 0.6s; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .reveal { opacity: 1; }
+}

@@ -1,0 +1,63 @@
+/* Pages « texte » : disponibilités, infos pratiques, mentions légales, 404 */
+
+/* Agenda */
+.cadre-agenda {
+    border: 3px solid #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #fff;
+}
+.cadre-agenda iframe { width: 100%; height: 75vh; min-height: 480px; border: 0; }
+.agenda-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 1.25rem; }
+.agenda-actions .btn { color: var(--vert); border-color: var(--vert); }
+.agenda-actions .btn:hover { background: var(--vert); color: #fff; }
+.agenda-actions .btn--plein { background: var(--vert); color: #fff; }
+.agenda-actions .btn--plein:hover { background: var(--vert-fonce); color: #fff; }
+
+/* Infos pratiques */
+.infos { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.infos .panel h2 { font-size: 1.4rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
+.infos .panel h2 i { font-size: 1.7rem; }
+.infos ul { list-style: disc; padding-left: 1.2rem; }
+.infos li + li { margin-top: 0.3rem; }
+
+.faq details {
+    margin-bottom: 0.6rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: 12px;
+    background: var(--vert);
+    color: #fff;
+}
+.faq summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 1.4rem; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin-top: 0.6rem; }
+
+/* Mentions légales */
+.prose { max-width: 70ch; margin-inline: auto; }
+.prose h2 { font-size: 1.5rem; margin: 2rem 0 0.6rem; }
+.prose ul { list-style: disc; padding-left: 1.2rem; margin-top: 0.5rem; }
+.prose a { text-decoration: underline; text-underline-offset: 3px; }
+.avertissement {
+    max-width: 70ch;
+    margin: 1.5rem auto 0;
+    padding: 1rem 1.25rem;
+    border: 2px dashed #c9a800;
+    border-radius: 12px;
+    background: #fff3a0;
+    color: #5a4a00;
+    font-weight: 600;
+}
+
+/* 404 */
+.page-404 { text-align: center; padding-block: 4rem; }
+.page-404 .btn { margin-top: 1.5rem; color: var(--vert); border-color: var(--vert); }
+.page-404 .btn:hover { background: var(--vert); color: #fff; }
